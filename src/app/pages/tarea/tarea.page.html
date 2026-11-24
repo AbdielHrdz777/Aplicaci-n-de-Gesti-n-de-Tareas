@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nueva Tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input label="Nombre de la tarea" labelPlacement="stacked" [(ngModel)]="nombre" placeholder="Ej. Comprar materiales"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea label="Descripción" labelPlacement="stacked" [(ngModel)]="descripcion" placeholder="Detalles de la tarea..."></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="Fecha de Vencimiento" labelPlacement="stacked" type="date" [(ngModel)]="fechaVencimiento"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="guardarTarea()">
+    Guardar Tarea
+  </ion-button>
+</ion-content>

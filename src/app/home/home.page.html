@@ -1,21 +1,42 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Blank </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Mis Tareas
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Mis Tareas</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a>
-    </p>
+  <!-- Mensaje si no hay tareas -->
+  <div *ngIf="tareas.length === 0" class="ion-text-center ion-padding-top" style="margin-top: 50px; color: #666;">
+    <p>No hay tareas registradas.</p>
+    <p>Presiona el botón <strong>+</strong> para agregar una nueva.</p>
   </div>
+
+  <!-- Lista de Tareas -->
+  <ion-list *ngIf="tareas.length > 0">
+    <ion-item *ngFor="let t of tareas" (click)="verDetalles(t.id)" detail="true">
+      <ion-label>
+        <h2>{{ t.nombre }}</h2>
+        <p>{{ t.descripcion }}</p>
+        <p *ngIf="t.fechaVencimiento"><small>Vence: {{ t.fechaVencimiento }}</small></p>
+      </ion-label>
+      <ion-button fill="clear" color="danger" slot="end" (click)="eliminarTarea(t.id, $event)">
+        <ion-icon name="trash" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botón Flotante para Agregar Tarea -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="irACrearTarea()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

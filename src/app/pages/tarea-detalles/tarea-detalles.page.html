@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles / Editar Tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="tarea">
+  <ion-item>
+    <ion-input label="Nombre" labelPlacement="stacked" [(ngModel)]="tarea.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea label="Descripción" labelPlacement="stacked" [(ngModel)]="tarea.descripcion"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="Fecha de Vencimiento" labelPlacement="stacked" type="date" [(ngModel)]="tarea.fechaVencimiento"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" color="success" (click)="actualizarCambios()">Guardar Cambios</ion-button>
+</ion-content>
